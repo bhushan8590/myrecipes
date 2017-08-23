@@ -55,7 +55,7 @@ class ChefTest < ActiveSupport::TestCase
     mixed_email = "BhushaN@ExampLe.com"
     @chef.email = mixed_email
     @chef.save
-    assert_equal mixed_email.downcase, @chef.reload.email
+    assert_equal mixed_email.downcase, @chef.reload.email 
   end
 
 end

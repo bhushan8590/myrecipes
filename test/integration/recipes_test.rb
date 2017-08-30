@@ -3,7 +3,7 @@ require 'test_helper'
 class RecipesTest < ActionDispatch::IntegrationTest
 
   def setup
-    @chef = Chef.create!(chefname:"bhushan", email:"bhushan@example.com")
+    @chef = Chef.create!(chefname:"bhushan", email:"bhushan@example.com", password:"password", password_confirmation:"password")
     @recipe = Recipe.create(name:"Vegitable saute", description:"this is a greate saute", chef:@chef)
     @recipe2 = @chef.recipes.build(name:"chicken saute", description:"this dish test good")
     @recipe2.save
@@ -24,7 +24,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   test " should get recipe show " do
     get recipe_path(@recipe)
     assert_template "recipes/show"
-    assert_match @recipe.name, response.body
+    assert_match @recipe.name.titleize, response.body
     assert_match @recipe.description, response.body
     assert_match @chef.chefname, response.body
     assert_select "a[href=?]", recipes_path, text: "Back"
@@ -41,7 +41,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
       post recipes_path params:{ recipe: {name:name_of_recipe, description:description_of_recipe}}
     end
     follow_redirect!
-    assert_match name_of_recipe.capitalize, response.body
+    assert_match name_of_recipe.titleize, response.body
     assert_match description_of_recipe, response.body
   end
 

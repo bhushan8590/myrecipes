@@ -31,6 +31,10 @@ class ChefsController < ApplicationController
     end
   end
 
+  def index
+    @chefs = Chef.all
+  end
+
   private
   def chef_params
     params.require(:chef).permit(:chefname, :email, :password, :password_confirmation)

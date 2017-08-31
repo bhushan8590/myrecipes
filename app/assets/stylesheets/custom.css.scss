@@ -1,4 +1,4 @@
-$navbar-default-bg: #f7ba11;
+  $navbar-default-bg: #511818;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -33,17 +33,18 @@ $navbar-default-bg: #f7ba11;
   margin-bottom: 30px;
   letter-spacing: -1px;
   font-weight: bold;
-  color: #fff;
+  color: #000;
 }
 
 .btn-xlarge{
-  background-color: #0f1d44;
+  background-color: #511818;
   border: none;
 }
 
 .btn-xlarge:hover{
-  background-color: #36d838;
+  background-color: #86f977;
   text-decoration: none;
+  color: #3b3d3b;
 }
 
 .description{

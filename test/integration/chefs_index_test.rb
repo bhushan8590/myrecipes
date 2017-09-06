@@ -3,6 +3,7 @@ require 'test_helper'
 class ChefsIndexTest < ActionDispatch::IntegrationTest
   def setup
     @chef = Chef.create!(chefname:"bhushan", email:"bhushan@example.com", password:"password", password_confirmation:"password")
+    @admin_chef = Chef.create!(chefname:"bhushan admin", email:"bhushanadmin@example.com", password:"password", password_confirmation:"password", admin:true)
   end
 
   test " should get chefs index " do
@@ -17,7 +18,7 @@ class ChefsIndexTest < ActionDispatch::IntegrationTest
   end
 
   test " should delete chef" do
-    sign_in_as(@chef,"password")
+    sign_in_as(@admin_chef,"password")
     get chefs_path
     assert_template "chefs/index"
     assert_difference 'Chef.count',-1 do

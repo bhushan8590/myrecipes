@@ -2,8 +2,11 @@
 <div class="well col-md-8 col-md-offset-2">
   <h4 class="center description"><strong>Steps</strong></h4>
   <hr>
-  <%= simple_format(@recipe.description) %>
-  <hr>
+   <%= simple_format(@recipe.description) %>
+  </hr>
+  <% if @recipe.ingredients.any? %>
+    <p>Ingredients: <%= render @recipe.ingredients %></p>
+  <% end %>
   <div class="pull-right">
     <p class="center"><em>Created by</em></p>
     <p class="center"><%= link_to gravatar_for(@recipe.chef), chef_path(@recipe.chef) %></p>
@@ -16,7 +19,7 @@
   </div>
   <div class="recipe-actions">
     <%= link_to "Back", recipes_path, class: "btn btn-md btn-primary"%>
-    <% if logged_in? && (current_chef == recipe.chef || current_chef.admin?) %>
+    <% if logged_in? && (current_chef == @recipe.chef || current_chef.admin?) %>
       <%= link_to "Edit Recipe", edit_recipe_path(@recipe), class: "btn btn-md btn-warning"%>
       <%= link_to "Delete Recipe", recipe_path(@recipe), method: :delete,
                                    data: { confirm: "Are you sure you want to delete recipe?" },class: "btn btn-md btn-danger"%>
